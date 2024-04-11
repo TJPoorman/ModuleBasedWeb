@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Styles {
+    <style>
+        .card h3 {
+            font-size: 3rem;
+        }
+
+        .card .icon {
+            transition: all .3s linear;
+            position: absolute;
+            top: 25px;
+            right: 10px;
+            z-index: 0;
+            font-size: 90px;
+            color: rgb(77,77,77);
+        }
+
+        .card:hover .icon {
+            font-size: 95px;
+        }
+
+        .card-body {
+            min-height: 115px;
+        }
+    </style>
+}
+
+<div class="row m-3">
+    @foreach (var module in ModuleRegistration.Modules.Where(a => !a.ExcludeTileFromHomePage).OrderBy(a => a.Name))
+    {
+        if (!string.IsNullOrEmpty(module.PageHyperLink))
+        {
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="card border-primary mb-3">
+                    <div class="card-header">@module.Title</div>
+                    <div class="card-body">
+                        <div class="icon">
+                            <i class="@module.Icon"></i>
+                        </div>
+                    </div>
+                    <a class="stretched-link" href="@module.PageHyperLink" target="_blank"></a>
+                </div>
+            </div>
+        }
+        else if (User.Identity.IsAuthenticated && (await Authorization.AuthorizeAsync(User, $"{Configuration["AzureAd:AppGroupPrefix"]}module-{module.Name}")).Succeeded)
+        {
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="card border-primary mb-3">
+                    <div class="card-header">@module.Title</div>
+                    <div class="card-body">
+                        <div class="icon">
+                            <i class="@module.Icon"></i>
+                        </div>
+                    </div>
+                    @Html.ActionLink(" ", "Index", "Home", new { area = module.Name }, new { @class = "stretched-link" })
+                </div>
+            </div>
+        }
+    }
+</div>

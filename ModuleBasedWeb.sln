@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleBasedWeb", "ModuleBasedWeb\ModuleBasedWeb.csproj", "{C9F54FFF-25D5-46E1-8524-1C88387CBA40}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleBasedWeb.Utility", "ModuleBasedWeb.Utility\ModuleBasedWeb.Utility.csproj", "{076631C2-7E38-4E2A-B0CA-7A626A965DF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{77058CB8-23A3-4422-8DF0-EC96512C1DC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleBasedWeb.Mvc", "ModuleBasedWeb.Mvc\ModuleBasedWeb.Mvc.csproj", "{279F8F16-B90E-44B3-81F4-37EB1D806F2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9F54FFF-25D5-46E1-8524-1C88387CBA40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9F54FFF-25D5-46E1-8524-1C88387CBA40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9F54FFF-25D5-46E1-8524-1C88387CBA40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9F54FFF-25D5-46E1-8524-1C88387CBA40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{076631C2-7E38-4E2A-B0CA-7A626A965DF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{076631C2-7E38-4E2A-B0CA-7A626A965DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{076631C2-7E38-4E2A-B0CA-7A626A965DF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{076631C2-7E38-4E2A-B0CA-7A626A965DF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{279F8F16-B90E-44B3-81F4-37EB1D806F2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{279F8F16-B90E-44B3-81F4-37EB1D806F2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{279F8F16-B90E-44B3-81F4-37EB1D806F2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{279F8F16-B90E-44B3-81F4-37EB1D806F2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{279F8F16-B90E-44B3-81F4-37EB1D806F2A} = {77058CB8-23A3-4422-8DF0-EC96512C1DC9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {58963F89-AC98-4BE2-8E8A-505365DA4F3D}
+	EndGlobalSection
+EndGlobal

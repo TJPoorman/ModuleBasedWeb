@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="h-100 mh-100">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Module Based Web</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body class="d-flex flex-column h-100 mh-100">
+    <nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-black">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ModuleBasedWeb</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarHeader">
+                <ul class="navbar-nav me-auto"></ul>
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-grow-1 d-flex flex-column">
+        <main role="main" class="flex-column px-3 flex-grow-1 overflow-auto">
+            @RenderBody()
+        </main>
+
+        <footer class="border-top footer bg-black text-muted">
+            <div class="container-fluid d-flex justify-content-between">
+                <div>
+                    &copy; @DateTime.Now.Year - Module Based Web
+                </div>
+                <div>
+                    Version: @VersionUtility.Version
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

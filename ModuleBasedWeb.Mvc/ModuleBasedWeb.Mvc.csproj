@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<EnableDefaultContentItems>false</EnableDefaultContentItems>
+		<DebugType>embedded</DebugType>
+		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+
+		<HostBinDir>ModuleBasedWeb\bin\Debug\net8.0</HostBinDir>
+		<ModuleName>Mvc</ModuleName>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="Areas\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ModuleBasedWeb.Utility\ModuleBasedWeb.Utility.csproj" />
+	</ItemGroup>
+
+	<!-- ****This section copies the bin files to the host modules folder for debug**** -->
+	<Target Name="CopyDebugToHostModule" Condition=" '$(Configuration)' == 'Debug' " AfterTargets="AfterBuild">
+		<ItemGroup>
+			<OutputBinDir Include="$(TargetDir)**\*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(OutputBinDir)" DestinationFiles="@(OutputBinDir->'$(SolutionDir)\$(HostBinDir)\Modules\$(ModuleName)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="3" RetryDelayMilliseconds="300" />
+	</Target>
+	<!-- ****************************************************************************** -->
+
+</Project>

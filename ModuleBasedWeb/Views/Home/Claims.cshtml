@@ -1,0 +1,41 @@
+﻿@model Microsoft.Graph.Models.GroupCollectionResponse
+@using System.Security.Principal
+@{
+    ViewData["Title"] = "Claims";
+    var userClaims = User.Identity as System.Security.Claims.ClaimsIdentity;
+}
+
+<h1>Claims</h1>
+
+<div>
+    <h3>Main Claims:</h3>
+    <table class="table table-striped table-bordered table-hover">
+        <tr><td class="w-25">Name</td><td>@userClaims?.FindFirst("name")?.Value</td></tr>
+        <tr><td class="w-25">Username</td><td>@userClaims?.FindFirst("preferred_username")?.Value</td></tr>
+        <tr><td class="w-25">Subject</td><td>@userClaims?.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value</td></tr>
+        <tr><td class="w-25">TenantId</td><td>@userClaims?.FindFirst("http://schemas.microsoft.com/identity/claims/tenantid")?.Value</td></tr>
+    </table>
+</div>
+
+<div>
+    <h3>App Groups:</h3>
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        @foreach (var claim in userClaims?.Claims?.Where(a => a.Type.Equals("groups")).OrderBy(a => a.Value))
+        {
+            if (Model.Value.Any(a => a.Id.Equals(claim.Value)))
+            {
+                <tr><td class="w-25">@claim.Value</td><td>@(Model.Value.FirstOrDefault(a => a.Id == claim.Value)?.DisplayName ?? "")</td></tr>
+            }
+        }
+    </table>
+</div>
+
+<div>
+    <h3>Other Claims:</h3>
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        @foreach (var claim in userClaims?.Claims?.Where(a => !a.Type.Equals("groups")).OrderBy(a => a.Type))
+        {
+            <tr><td>@claim.Type</td><td>@claim.Value</td></tr>
+        }
+    </table>
+</div>

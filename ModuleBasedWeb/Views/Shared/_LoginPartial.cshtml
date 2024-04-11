@@ -1,0 +1,27 @@
+﻿@using System.Security.Principal
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="me-2 text-white">
+        <p class="nav lh-1 d-block text-end">@User.GetUserGraphDisplayName()</p>
+        <p class="nav lh-1 d-block text-end">@User.GetUserGraphEmail()</p>
+    </div>
+    <div class="btn-group">
+        <img src="@User.GetUserGraphPhoto()" class="rounded-circle align-self-center" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" />
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+            <li>
+                <a class="dropdown-item d-flex justify-content-between" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut">
+                    <i class="fa-solid fa-arrow-right-from-bracket" style="line-height: 1.5;"></i>Sign Out
+                </a>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">Sign in</a>
+        </li>
+    </ul>
+}
